@@ -19,9 +19,15 @@ price_arr = Array.new
 # client.collections.each { |coll| keys.push(coll.name) }
 
 # puts client[:cars].keys
+
+
 client[:cars].find.each { |doc| _id_arr.push(Hash[doc]['_id']); name_arr.push(Hash[doc]['name']); price_arr.push(Hash[doc]['price']) }
 
 puts keys
+# id
+# name
+# price
+
 
 id_vec = Daru::Vector.new _id_arr
 name_vec = Daru::Vector.new name_arr
@@ -41,13 +47,48 @@ puts df.inspect
 #----- other test -------------
 # puts
 # client[:cars].find.each { |doc| puts (doc).class }
+# output :
+# BSON::Document
+# BSON::Document
+# BSON::Document
+
 # puts
 # client[:cars].find.each { |doc| puts Array(doc) }
+# output :
+# _id
+# 58dca09b2e6509b05f89443c
+# name
+# Audi
+# price
+# 52642.0
+# _id
+# 58dca0a02e6509b05f89443d
+# name
+# Mercedes
+# price
+# 57127.0
+# _id
+# 58dca0a52e6509b05f89443e
+# name
+# Volvo
+# price
+# 29000.0
+
 # puts
 # client[:cars].find.each { |doc| puts doc }
+# output:
+# {"_id"=>BSON::ObjectId('58dca09b2e6509b05f89443c'), "name"=>"Audi", "price"=>52642.0}
+# {"_id"=>BSON::ObjectId('58dca0a02e6509b05f89443d'), "name"=>"Mercedes", "price"=>57127.0}
+# {"_id"=>BSON::ObjectId('58dca0a52e6509b05f89443e'), "name"=>"Volvo", "price"=>29000.0}
+
+
 # puts
 # puts client.collections
+# output  : #<Mongo::Collection:0x007fd8713b8430>
+
 # puts
 # client.collections.each { |coll| puts coll.name }
+# output : cars
+
 
 client.close
