@@ -22,9 +22,10 @@ price_arr = Array.new
 client[:cars].find.each { |doc| _id_arr.push(Hash[doc]['_id']); name_arr.push(Hash[doc]['name']); price_arr.push(Hash[doc]['price']) }
 
 puts keys
-# id_vec = Daru::Vector.new _id_arr
-# name_vec = Daru::Vector.new name_arr
-# price_vec = Daru::Vector.new price_arr
+
+id_vec = Daru::Vector.new _id_arr
+name_vec = Daru::Vector.new name_arr
+price_vec = Daru::Vector.new price_arr
 
 df = Daru::DataFrame.new({ :id => id_vec, :name => name_vec, :price => price_vec})
 
@@ -37,7 +38,7 @@ puts df.inspect
 #           1 58dca0a02e   Mercedes    57127.0
 #           2 58dca0a52e      Volvo    29000.0
 
-
+#----- other test -------------
 # puts
 # client[:cars].find.each { |doc| puts (doc).class }
 # puts
